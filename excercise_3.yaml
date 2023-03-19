@@ -1,0 +1,122 @@
+openapi: 3.0.0
+info:
+    title: Upload API
+    description: API for uploading media files
+    version: 1.0.0
+servers:
+    - url: https://karolpytel.pl
+paths:
+    /v1/upload:
+        post:
+            summary: Upload a media file
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: array
+                            items:
+                                type: object
+                                properties:
+                                    part:
+                                        type: integer
+                                    etag:
+                                        type: string
+                            example:
+                                - part: 1
+                                  etag: a54357aff0632cce46d942af68356b38
+                                - part: 2
+                                  etag: 0c78aef83f66abc1fa1e8477f296d394
+                                - part: 3
+                                  etag: acbd18db4cc2f85cedef654fccc4a4d8
+            responses:
+                '200':
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    id:
+                                        type: integer
+                                    timestamp:
+                                        type: integer
+                                    source:
+                                        type: string
+                                    folder:
+                                        type: string
+                                    height:
+                                        type: integer
+                                    width:
+                                        type: integer
+                                    mime:
+                                        type: string
+                                    display:
+                                        type: object
+                                        properties:
+                                            thumbnail:
+                                                type: object
+                                                properties:
+                                                    width:
+                                                        type: integer
+                                                    height:
+                                                        type: integer
+                                                    src:
+                                                        type: string
+                                            preview:
+                                                type: object
+                                                properties:
+                                                    width:
+                                                        type: integer
+                                                    height:
+                                                        type: integer
+                                                    src:
+                                                        type: string
+                                            square:
+                                                type: object
+                                                properties:
+                                                    width:
+                                                        type: integer
+                                                    height:
+                                                        type: integer
+                                                    src:
+                                                        type: string
+                                            original:
+                                                type: object
+                                                properties:
+                                                    width:
+                                                        type: integer
+                                                    height:
+                                                        type: integer
+                                                    src:
+                                                        type: string
+                                    metadata:
+                                        type: object
+                                        properties:
+                                            gps:
+                                                type: string
+                                            datetime:
+                                                type: integer
+                                            name:
+                                                type: string
+                            example:
+                                id: 2058959
+                                timestamp: 1516354800
+                                source: instagram
+                                folder: null
+                                height: 1080
+                                width: 1080
+                                mime: image/jpeg
+                                display:
+                                    thumbnail:
+                                        width: 200
+                                        height: 200
+                                        src: https://printu.test/media/catalog/cache/vH72u0x7Y4uf0Tdd1j%252F34EFgAluLOcapxlHI0rcqWYDEZi8ph6XztIGW4VGE1cuYIyIE/image.jpg
+                                    preview:
+                                        width: 800
+                                        height: 800
+                                        src: https://printu.test/media/catalog/cache/vH72u0x7Y4uf0Tdd1j%252F34EFgAluLOcapxlHI0rcqWYDEZi8ph6XztIsI%252BRE60RFRtAsn/image.jpg
+                                    square:
+                                        width: 200
+                                        height: 200
+                                        src: https://printu.test/media/catalog/cache/vH72u0x7Y4uf0Tdd1j%252F34
